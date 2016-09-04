@@ -1,0 +1,7 @@
+## Interface: 70000
+## Version: 0.1.4
+## Title: LindComboPoints
+## Notes: Combo Punkte
+## Author: Lars Thevissen
+
+LindComboPoints.lua
