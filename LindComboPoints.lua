@@ -1,15 +1,15 @@
+assert(LoadAddOn("LindUF"))
+
 LindComboPointsFrame = CreateFrame("Frame", "LindComboPoints", UIParent)
 LindComboPointsFrame:SetWidth(300)
 LindComboPointsFrame:SetHeight(20)
-LindComboPointsFrame:SetPoint("RIGHT", UIParent, "CENTER", -100, -70)
+LindComboPointsFrame:SetPoint("BOTTOMLEFT", "lind_player_life", "TOPLEFT", -0, -0)
 LindComboPointsFrame.MaxPoints = 0
 LindComboPointsFrame:Show()
 
 LindComboPoints = {}
 
 
--- LindComboPointsFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
--- LindComboPointsFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 LindComboPointsFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
 LindComboPointsFrame:SetScript("OnEvent", function(self, event, ...)
     for i = 1, #LindComboPoints do
