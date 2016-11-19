@@ -3,7 +3,7 @@ assert(LoadAddOn("LindUF"))
 LindComboPointsFrame = CreateFrame("Frame", "LindComboPoints", UIParent)
 LindComboPointsFrame:SetWidth(300)
 LindComboPointsFrame:SetHeight(10)
-LindComboPointsFrame:SetPoint("BOTTOMLEFT", "lind_player_life", "TOPLEFT", -0, -0)
+LindComboPointsFrame:SetPoint("BOTTOMLEFT", "lind.player.HealthBar", "TOPLEFT", -0, -0)
 LindComboPointsFrame.MaxPoints = 0
 LindComboPointsFrame:Show()
 
