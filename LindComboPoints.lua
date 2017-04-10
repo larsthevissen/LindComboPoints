@@ -46,6 +46,19 @@ LindComboPoints.DRUID.Update = function(power, maxPower)
   end
 end
 
+LindComboPoints.MONK = {}
+LindComboPoints.MONK.power = 12
+LindComboPoints.MONK.Update = function(power, maxPower)
+  local spec = GetSpecialization()
+  if (spec == 3) then
+    LindComboPoints.Update(power, maxPower)
+  else
+    for i = 1, LindComboPoints.MAX do
+      LindComboPoints[i]:Hide()
+    end
+  end
+end
+
 LindComboPoints.Update = function(power, maxPower)
   if(maxPower > 0) then
     for i = 1, maxPower do
