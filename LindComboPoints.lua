@@ -1,9 +1,9 @@
-assert(LoadAddOn("LindUF"))
+--assert(LoadAddOn("LindUF"))
 
 LindComboPointsFrame = CreateFrame("Frame", "LindComboPoints", UIParent)
 LindComboPointsFrame:SetWidth(300)
 LindComboPointsFrame:SetHeight(10)
-LindComboPointsFrame:SetPoint("BOTTOMLEFT", "lind.player.HealthBar", "TOPLEFT", -0, -0)
+LindComboPointsFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 LindComboPointsFrame.MaxPoints = 0
 LindComboPointsFrame:Show()
 
@@ -11,7 +11,14 @@ LindComboPoints = {}
 
 
 LindComboPointsFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
+LindComboPointsFrame:RegisterEvent("VARIABLES_LOADED")
 LindComboPointsFrame:SetScript("OnEvent", function(self, event, ...)
+
+  if (event == "VARIABLES_LOADED") then
+    if(LindUF ~= nil) then
+      LindComboPointsFrame:SetPoint("BOTTOMLEFT", "lind.player.HealthBar", "TOPLEFT", 0, 0)  
+    end
+  end
     for i = 1, #LindComboPoints do
       LindComboPoints[i]:Hide()
     end
