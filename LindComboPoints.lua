@@ -1,8 +1,25 @@
---assert(LoadAddOn("LindUF"))
 
 LindComboPoints = {}
 LindComboPoints.MAX = 10
 
+-- basic Update function
+LindComboPoints.Update = function(power, maxPower)
+  if(maxPower > 0) then
+    for i = 1, maxPower do
+      if (i <= power) then
+        LindComboPoints[i]:SetValue(1)
+      else
+        LindComboPoints[i]:SetValue(0)
+      end
+    end
+  else
+    for i = 1, LindComboPoints.MAX do
+      LindComboPoints[i]:Hide()
+    end
+  end
+end
+
+-- Class Configuration
 LindComboPoints.PALADIN = {}
 LindComboPoints.PALADIN.power = 9
 LindComboPoints.PALADIN.Update = function(power, maxPower)
@@ -59,22 +76,7 @@ LindComboPoints.MONK.Update = function(power, maxPower)
   end
 end
 
-LindComboPoints.Update = function(power, maxPower)
-  if(maxPower > 0) then
-    for i = 1, maxPower do
-      if (i <= power) then
-        LindComboPoints[i]:SetValue(1)
-      else
-        LindComboPoints[i]:SetValue(0)
-      end
-    end
-  else
-    for i = 1, LindComboPoints.MAX do
-      LindComboPoints[i]:Hide()
-    end
-  end
-end
-
+--setup frame
 LindComboPoints.Frame = CreateFrame("Frame", "LindComboPoints", UIParent)
 LindComboPoints.Frame:SetWidth(300)
 LindComboPoints.Frame:SetHeight(10)
@@ -82,6 +84,7 @@ LindComboPoints.Frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 LindComboPoints.Frame.MaxPoints = 0
 LindComboPoints.Frame:Show()
 
+--setup combo points as status bars
 local localizedClass, englishClass, classIndex = UnitClass("player")
 if (LindComboPoints[englishClass] ~= nil) then
   for i = 1, LindComboPoints.MAX do
@@ -89,21 +92,21 @@ if (LindComboPoints[englishClass] ~= nil) then
       LindComboPoints[i] = CreateFrame("StatusBar", "LindPoint"..i, LindComboPoints.Frame)
       LindComboPoints[i]:SetHeight(LindComboPoints.Frame:GetHeight() - 4)
       LindComboPoints[i]:SetStatusBarTexture("Interface\\AddOns\\LindUF\\LindBar.tga")
-      LindComboPoints[i]:SetStatusBarColor(1, 1, 0, 1)
+      LindComboPoints[i]:SetStatusBarColor(1, 1, 1, 1)
       LindComboPoints[i]:SetBackdrop( {
         bgFile = "Interface\\AddOns\\LindUF\\LindBar.tga",
         edgeFile = nil,
         tile = false, tileSize = 0, edgeSize = 8,
         insets = { left = 0, right = 0, top = 0, bottom = 0 }
       })
-      LindComboPoints[i]:SetBackdropColor(.5, .5, .5, .5)
+      LindComboPoints[i]:SetBackdropColor(0, 0, 0, .5)
       LindComboPoints[i]:SetMinMaxValues(0, 1)
       LindComboPoints[i]:Hide()
     end
   end
 
+-- If LindUF is loaded, attach to top of player frame
   LindComboPoints.Frame:RegisterEvent("VARIABLES_LOADED")
-
   LindComboPoints.Frame:SetScript("OnEvent", function(self, event, ...)
     if (event == "VARIABLES_LOADED") then
       if(LindUF ~= nil) then
@@ -115,7 +118,7 @@ if (LindComboPoints[englishClass] ~= nil) then
   LindComboPoints.Frame:SetScript("OnUpdate", function(self, event, ...)
     local power = UnitPower("player", LindComboPoints[englishClass].power)
     local maxPower = UnitPowerMax("player", LindComboPoints[englishClass].power)
-
+    --reset size and position when needed
     if(maxPower ~= self.MaxPoints) then
       for i = 1, LindComboPoints.MAX do
         if (i <= maxPower) then
@@ -130,7 +133,6 @@ if (LindComboPoints[englishClass] ~= nil) then
       end
       self.maxPoints = maxPower
     end
-
     LindComboPoints[englishClass].Update(power, maxPower)
   end)
 end
