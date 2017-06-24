@@ -76,6 +76,12 @@ LindComboPoints.MONK.Update = function(power, maxPower)
   end
 end
 
+LindComboPoints.WARLOCK = {}
+LindComboPoints.WARLOCK.power = 7
+LindComboPoints.WARLOCK.Update = function(power, maxPower)
+  LindComboPoints.Update(power, maxPower)
+end
+
 --setup frame
 LindComboPoints.Frame = CreateFrame("Frame", "LindComboPoints", UIParent)
 LindComboPoints.Frame:SetWidth(300)
