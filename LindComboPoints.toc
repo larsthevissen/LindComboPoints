@@ -1,5 +1,5 @@
-## Interface: 70200
-## Version: 0.1.4
+## Interface: 70300
+## Version: Alpha
 ## Title: LindComboPoints
 ## Notes: Combo Punkte
 ## Author: Lars Thevissen
