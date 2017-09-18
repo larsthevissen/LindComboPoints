@@ -84,7 +84,7 @@ end
 
 --setup frame
 LindComboPoints.Frame = CreateFrame("Frame", "LindComboPoints", UIParent)
-LindComboPoints.Frame:SetWidth(300)
+LindComboPoints.Frame:SetWidth(345)
 LindComboPoints.Frame:SetHeight(10)
 LindComboPoints.Frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 LindComboPoints.Frame.MaxPoints = 0
