@@ -84,9 +84,9 @@ end
 
 --setup frame
 LindComboPoints.Frame = CreateFrame("Frame", "LindComboPoints", UIParent)
-LindComboPoints.Frame:SetWidth(345)
+LindComboPoints.Frame:SetWidth(120)
 LindComboPoints.Frame:SetHeight(10)
-LindComboPoints.Frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+LindComboPoints.Frame:SetPoint("CENTER", UIParent, "CENTER", 0, -150)
 LindComboPoints.Frame.MaxPoints = 0
 LindComboPoints.Frame:Show()
 
@@ -98,7 +98,7 @@ if (LindComboPoints[englishClass] ~= nil) then
       LindComboPoints[i] = CreateFrame("StatusBar", "LindPoint"..i, LindComboPoints.Frame)
       LindComboPoints[i]:SetHeight(LindComboPoints.Frame:GetHeight() - 4)
       LindComboPoints[i]:SetStatusBarTexture("Interface\\AddOns\\LindUF\\LindBar.tga")
-      LindComboPoints[i]:SetStatusBarColor(1, 1, 1, 1)
+      LindComboPoints[i]:SetStatusBarColor(1, 1, 1, .5)
       LindComboPoints[i]:SetBackdrop( {
         bgFile = "Interface\\AddOns\\LindUF\\LindBar.tga",
         edgeFile = nil,
@@ -111,15 +111,15 @@ if (LindComboPoints[englishClass] ~= nil) then
     end
   end
 
--- If LindUF is loaded, attach to top of player frame
-  LindComboPoints.Frame:RegisterEvent("VARIABLES_LOADED")
-  LindComboPoints.Frame:SetScript("OnEvent", function(self, event, ...)
-    if (event == "VARIABLES_LOADED") then
-      if(LindUF ~= nil) then
-        LindComboPoints.Frame:SetPoint("BOTTOMLEFT", "lind.player.HealthBar", "TOPLEFT", 0, 0)
-      end
-    end
-  end)
+-- -- If LindUF is loaded, attach to top of player frame
+--   LindComboPoints.Frame:RegisterEvent("VARIABLES_LOADED")
+--   LindComboPoints.Frame:SetScript("OnEvent", function(self, event, ...)
+--     if (event == "VARIABLES_LOADED") then
+--       if(LindUF ~= nil) then
+--         LindComboPoints.Frame:SetPoint("BOTTOMLEFT", "lind.player.HealthBar", "TOPLEFT", 0, 0)
+--       end
+--     end
+--   end)
 
   LindComboPoints.Frame:SetScript("OnUpdate", function(self, event, ...)
     local power = UnitPower("player", LindComboPoints[englishClass].power)
