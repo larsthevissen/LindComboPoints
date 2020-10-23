@@ -86,7 +86,7 @@ end
 LindComboPoints.Frame = CreateFrame("Frame", "LindComboPoints", UIParent)
 LindComboPoints.Frame:SetWidth(120)
 LindComboPoints.Frame:SetHeight(10)
-LindComboPoints.Frame:SetPoint("CENTER", UIParent, "CENTER", 0, -150)
+LindComboPoints.Frame:SetPoint("CENTER", UIParent, "CENTER", 0, -200)
 LindComboPoints.Frame.MaxPoints = 0
 LindComboPoints.Frame:Show()
 
@@ -95,7 +95,7 @@ local localizedClass, englishClass, classIndex = UnitClass("player")
 if (LindComboPoints[englishClass] ~= nil) then
   for i = 1, LindComboPoints.MAX do
     if not LindComboPoints[i] then
-      LindComboPoints[i] = CreateFrame("StatusBar", "LindPoint"..i, LindComboPoints.Frame)
+      LindComboPoints[i] = CreateFrame("StatusBar", "LindPoint"..i, LindComboPoints.Frame, BackdropTemplateMixin and "BackdropTemplate")
       LindComboPoints[i]:SetHeight(LindComboPoints.Frame:GetHeight() - 4)
       LindComboPoints[i]:SetStatusBarTexture("Interface\\AddOns\\LindUF\\LindBar.tga")
       LindComboPoints[i]:SetStatusBarColor(1, 1, 1, .5)
